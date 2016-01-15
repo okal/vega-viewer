@@ -1,15 +1,7 @@
-[![Build Status](https://travis-ci.org/onaio/vega-viewer.svg?branch=master)]
-(https://travis-ci.org/onaio/vega-viewer)
+(ns vega-viewer.dev-cards
+  (:require [vega-viewer.components.vega-viewer :refer [vega-viewer]]
+            [devcards.core :refer-macros [defcard om-root]]))
 
-# Intro
-
-vega-viewer is an experimental [Om](https://github.com/omcljs/om) component that
-accepts a [vega](https://github.com/vega/vega) specification parsed into a
-Clojure data structure and renders the resulting chart.
-
-## Usage
-
-```clojure
 (def vega-spec
   (atom {:width 200
          :height 200
@@ -38,15 +30,6 @@ Clojure data structure and renders the resulting chart.
                                        :y2 {:scale "frequency" :value 0}}
                                :update {:fill {:value "steelblue"}}}}]}))
 
-(om/build vega-viewer vega-spec)
-```
-
-## Development
-
-Run `lein-figwheel` in the project root to explore the included devcard
-
-## License
-
-Copyright © 2016 Okal Otieno & Ona
-
-Distributed under the [MIT License](https://opensource.org/licenses/MIT).
+(defcard vega-chart
+  (om-root vega-viewer)
+  vega-spec)
